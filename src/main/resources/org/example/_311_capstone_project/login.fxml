@@ -6,8 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.Login">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.LoginController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -23,7 +22,7 @@
             </Text>
             <TextArea layoutX="251.0" layoutY="100.0" prefHeight="29.0" prefWidth="192.0" />
             <TextArea layoutX="251.0" layoutY="196.0" prefHeight="29.0" prefWidth="192.0" />
-            <Button layoutX="273.0" layoutY="312.0" mnemonicParsing="false" text="Start" />
+            <Button fx:id="enterb" layoutX="273.0" layoutY="312.0" mnemonicParsing="false" onAction="#enterbtn" text="Enter" />
          </children>
       </AnchorPane>
    </children>
