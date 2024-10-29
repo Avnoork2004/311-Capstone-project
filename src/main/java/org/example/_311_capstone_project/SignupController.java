@@ -12,61 +12,53 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// Controller for handling user signup operations and navigating back to the login screen
 public class SignupController {
 
     @FXML
     private Text confirmPass;
-
     @FXML
     private TextField confirmPassText;
 
     @FXML
     private Text email;
-
     @FXML
     private TextField emailText;
 
     @FXML
     private Text firstName;
-
     @FXML
     private TextField firstNameText;
 
     @FXML
     private Text lastName;
-
     @FXML
     private TextField lastNameText;
 
     @FXML
     private Button logIn;
-
     @FXML
     private Text pass;
-
     @FXML
     private TextField passText;
 
     @FXML
     private Button signUp;
-
     @FXML
     private Text user;
-
     @FXML
     private TextField userText;
 
+    // Event handler to return to the login screen
     @FXML
     void backToLoginPage(ActionEvent event) {
         try {
-            // Load login.fxml
+            // Loads login.fxml for the login screen
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
             Parent loginRoot = fxmlLoader.load();
 
-            // Get the current stage from the logIn button
+            // Sets the current stage to show the login screen
             Stage stage = (Stage) logIn.getScene().getWindow();
-
-            // Set the new scene with login.fxml
             Scene scene = new Scene(loginRoot, 600, 400);
             stage.setScene(scene);
             stage.setTitle("Login");
@@ -76,10 +68,9 @@ public class SignupController {
         }
     }
 
-
+    // method to store the signup data to the database
     @FXML
     void storeSignupDatabase(ActionEvent event) {
-
+        // Logic to store the signup information to the database will be added
     }
-
 }

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// Controller for the login screen navigating to the Signup or Main Screen
 public class LoginController {
 
     @FXML
@@ -18,17 +19,16 @@ public class LoginController {
     @FXML
     private Button signup;
 
+    // Event handler for navigating to the signup screen
     @FXML
     void signupbtn(ActionEvent event) {
         try {
-            // Load signup.fxml
+            // Loads signup.fxml for the signup screen
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
             Parent signupRoot = fxmlLoader.load();
 
-            // Get the current stage from the signup button
+            // Gets the current stage and sets it to the signup scene
             Stage stage = (Stage) signup.getScene().getWindow();
-
-            // Set the new scene with signup.fxml
             Scene scene = new Scene(signupRoot, 600, 400);
             stage.setScene(scene);
             stage.setTitle("Sign Up");
@@ -38,18 +38,16 @@ public class LoginController {
         }
     }
 
-
+    // Event handler for navigating to the main screen after the login page
     @FXML
     void loginbtn(ActionEvent event) {
         try {
-            // Load mainscreen.fxml
+            // Loads mainscreen.fxml for the main application screen
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainscreen.fxml"));
             Parent mainScreenRoot = fxmlLoader.load();
 
-            // Get the current stage from the button
+            // Gets the current stage and sets it to the main screen scene
             Stage stage = (Stage) login.getScene().getWindow();
-
-            // Set the new scene with mainscreen.fxml
             Scene scene = new Scene(mainScreenRoot, 600, 400);
             stage.setScene(scene);
             stage.setTitle("Main Screen");
