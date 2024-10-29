@@ -10,7 +10,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text layoutX="142.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <Text layoutX="142.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
@@ -20,9 +20,16 @@
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Text>
-            <TextArea layoutX="251.0" layoutY="100.0" prefHeight="29.0" prefWidth="192.0" />
+            <TextArea layoutX="251.0" layoutY="113.0" prefHeight="29.0" prefWidth="192.0" />
             <TextArea layoutX="251.0" layoutY="196.0" prefHeight="29.0" prefWidth="192.0" />
-            <Button fx:id="enterb" layoutX="273.0" layoutY="312.0" mnemonicParsing="false" onAction="#enterbtn" text="Enter" />
+            <Button fx:id="login" layoutX="190.0" layoutY="292.0" mnemonicParsing="false" onAction="#loginbtn" text="Log - In" />
+            <Text layoutX="180.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To MediaVault ! ! !">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="284.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" />
+            <Button fx:id="signup" layoutX="346.0" layoutY="292.0" mnemonicParsing="false" onAction="#signupbtn" text="Sign - up" />
          </children>
       </AnchorPane>
    </children>

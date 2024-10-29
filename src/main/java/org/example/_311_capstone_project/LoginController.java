@@ -13,17 +13,41 @@ import java.io.IOException;
 public class LoginController {
 
     @FXML
-    private Button enterb;
+    private Button login;
 
     @FXML
-    void enterbtn(ActionEvent event) {
+    private Button signup;
+
+    @FXML
+    void signupbtn(ActionEvent event) {
+        try {
+            // Load signup.fxml
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+            Parent signupRoot = fxmlLoader.load();
+
+            // Get the current stage from the signup button
+            Stage stage = (Stage) signup.getScene().getWindow();
+
+            // Set the new scene with signup.fxml
+            Scene scene = new Scene(signupRoot, 600, 400);
+            stage.setScene(scene);
+            stage.setTitle("Sign Up");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void loginbtn(ActionEvent event) {
         try {
             // Load mainscreen.fxml
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainscreen.fxml"));
             Parent mainScreenRoot = fxmlLoader.load();
 
             // Get the current stage from the button
-            Stage stage = (Stage) enterb.getScene().getWindow();
+            Stage stage = (Stage) login.getScene().getWindow();
 
             // Set the new scene with mainscreen.fxml
             Scene scene = new Scene(mainScreenRoot, 600, 400);
