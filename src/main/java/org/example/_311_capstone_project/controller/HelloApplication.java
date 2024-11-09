@@ -1,4 +1,4 @@
-package org.example._311_capstone_project;
+package org.example._311_capstone_project.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

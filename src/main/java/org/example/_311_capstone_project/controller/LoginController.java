@@ -1,4 +1,4 @@
-package org.example._311_capstone_project;
+package org.example._311_capstone_project.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
