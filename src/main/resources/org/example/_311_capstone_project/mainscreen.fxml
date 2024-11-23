@@ -17,7 +17,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="[Account Username]">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="History">
@@ -27,7 +27,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Sign out">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#Logout" text="Logout" />
                   </items>
                 </Menu>
               </menus>
