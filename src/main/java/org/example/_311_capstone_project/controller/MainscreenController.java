@@ -36,27 +36,29 @@ public class MainscreenController implements Initializable {
 
     //may add/ change the titles to match with other class
     @FXML
-    private TableView<?> MovieTable;
-
-
-    @FXML
-    private TableColumn<?, String> MovieTitle;
-
+    private TableColumn<Movie, String> GenreTitle;
 
     @FXML
-    private TableColumn<?, String> RateTitle;
-
+    private TableColumn<Movie, Integer> MovieIDTitle;
 
     @FXML
-    private TableColumn<?, String> RentTitle;
+    private TableView<Movie> MovieTable;
 
+    @FXML
+    private TableColumn<Movie, String> MovieTitle;
+
+    @FXML
+    private TableColumn<Movie, Double> RateTitle;
+
+    @FXML
+    private TableColumn<Movie, Integer> ReleaseYearTitle;
 
     @FXML
     private TextField Search;
 
-    // will change the placeholdername later
 
-    //ObservableList<placeholder> list = FXCollections.observableArrayList();
+
+    ObservableList<Movie> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,28 +69,34 @@ public class MainscreenController implements Initializable {
         //Once title are finalize will finish select command
 
 
-        String placeholder = "SELECT ";
+        String movie = "SELECT movieId,title,genre,releaseYear,rating From Movie";
 
 
         // try and catch for the SQL command
 
-
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(placeholder);
+            ResultSet rs = stmt.executeQuery(movie);
             while (rs.next()) {
-                //get the titles for the database
+
+                Integer movieId = rs.getInt("movieId");
+                String title = rs.getString("title");
+                String genre = rs.getString("genre");
+                Integer releaseYear = rs.getInt("releaseYear");
+                Double rating = rs.getDouble("rating");
+
+                //populate
+                list.add(new Movie(movieId, title, genre, releaseYear, rating));
 
 
-                // calls list.add(*titles*)
-
-
+                MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("MovieID"));
                 MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
                 RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
-                RentTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
+                ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
+                GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
+                MovieTable.setItems(list);
 
-                // MovieTable.setItems(*list.add(*titles*)*)
             }
         } catch (SQLException e) {
             Logger.getLogger(MainscreenController.class.getName()).log(Level.SEVERE, null, e);
