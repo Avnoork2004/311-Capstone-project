@@ -29,7 +29,7 @@ public class LoginController {
 
             // Gets the current stage and sets it to the signup scene
             Stage stage = (Stage) signup.getScene().getWindow();
-            Scene scene = new Scene(signupRoot, 600, 400);
+            Scene scene = new Scene(signupRoot, 895, 650);
             stage.setScene(scene);
             stage.setTitle("Sign Up");
             stage.show();

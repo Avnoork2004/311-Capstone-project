@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -48,6 +50,7 @@ public class SignupController {
     private Text user;
     @FXML
     private TextField userText;
+
 
     // Event handler to return to the login screen
     @FXML
