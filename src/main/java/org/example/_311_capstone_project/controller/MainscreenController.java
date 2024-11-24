@@ -66,9 +66,11 @@ public class MainscreenController implements Initializable {
     @FXML
     private MenuItem logout;
 
-
     @FXML
     private MenuBar MenuBar;
+
+    @FXML
+    private MenuItem History;
 
 
 
@@ -114,6 +116,8 @@ public class MainscreenController implements Initializable {
         }
 
         logout.setOnAction(this::Logout);
+        History.setOnAction(this::gotoHistory);
+
 
     }
     public void Logout(ActionEvent event) {
@@ -136,6 +140,26 @@ public class MainscreenController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void gotoHistory(ActionEvent event) {
+        try {
+            // Load the login scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 600, 400);
 
+            // Get the current stage and close it
+            Stage currentStage = (Stage) MenuBar.getScene().getWindow();
+            currentStage.hide();  // Alternative to `close()`
 
+            // Open the new stage for login
+            Stage loginStage = new Stage();
+            loginStage.setScene(scene);
+            loginStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
