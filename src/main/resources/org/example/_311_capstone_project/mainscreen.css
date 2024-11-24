@@ -1,0 +1,77 @@
+:root {
+    --primary-background-color: #f0f0f0;
+    --secondary-background-color: #ffffff;
+    --primary-color: #ff5722;
+    --secondary-color: #333333;
+    --highlight-color: #ff1744;
+    --button-hover-color: #e64a19;
+    --text-field-background: #ffffff;
+    --text-field-border: #cccccc;
+    --table-header-background: #ff5722;
+    --table-header-text-color: #ffffff;
+}
+
+.anchor-pane {
+    -fx-background-color: var(--primary-background-color);
+}
+
+.menu-bar {
+    -fx-background-color: var(--primary-color);
+    -fx-text-fill: var(--secondary-background-color);
+}
+
+.menu {
+    -fx-text-fill: var(--secondary-background-color);
+}
+
+.menu-item {
+    -fx-text-fill: var(--secondary-background-color);
+}
+
+.menu-item:hover {
+    -fx-background-color: var(--button-hover-color);
+}
+
+.text {
+    -fx-font-size: 16px;
+    -fx-fill: var(--secondary-color);
+}
+
+.text-field {
+    -fx-background-color: var(--text-field-background);
+    -fx-border-color: var(--text-field-border);
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.text-field:hover {
+    -fx-border-color: var(--primary-color); /* Change border color on hover */
+}
+
+.table-view {
+    -fx-background-color: var(--secondary-background-color);
+    -fx-border-color: var(--text-field-border);
+    -fx-border-radius: 5;
+}
+
+.table-view .table-header {
+    -fx-background-color: var(--table-header-background);
+    -fx-text-fill: var(--table-header-text-color);
+}
+
+.table-view .table-header .table-column-header {
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row {
+    -fx-background-color: var(--secondary-background-color);
+}
+
+.table-view .table-row:hover {
+    -fx-background-color: rgba(255, 87, 34, 0.1); /* Light hover effect */
+}
+
+.table-view .table-row {
+    -fx-background-color: var(--primary-color);
+    -fx-text-fill: var(--secondary-background-color);
+}
