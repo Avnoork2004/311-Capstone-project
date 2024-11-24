@@ -24,7 +24,7 @@ public class LoginController {
     void signupbtn(ActionEvent event) {
         try {
             // Loads signup.fxml for the signup screen
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/signup.fxml"));
             Parent signupRoot = fxmlLoader.load();
 
             // Gets the current stage and sets it to the signup scene
