@@ -9,37 +9,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.MainscreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.MainscreenController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <MenuBar prefHeight="28.0" prefWidth="600.0">
+            <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="600.0">
               <menus>
                 <Menu mnemonicParsing="false" text="[Account Username]">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="History">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Sign out">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#Logout" text="Logout" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
             <Text layoutX="72.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
-            <TextField layoutX="126.0" layoutY="51.0" prefHeight="26.0" prefWidth="346.0" />
-            <TableView layoutY="100.0" prefHeight="300.0" prefWidth="601.0">
+            <TextField fx:id="Search" layoutX="126.0" layoutY="51.0" prefHeight="26.0" prefWidth="346.0" />
+            <TableView fx:id="MovieTable" layoutY="100.0" prefHeight="300.0" prefWidth="601.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="[Movie Title]" />
-                <TableColumn prefWidth="75.0" text="[Rate]" />
-                  <TableColumn prefWidth="75.0" text="[Borrowed/Rent]" />
+                  <TableColumn fx:id="MovieIDTitle" prefWidth="75.0" text="[Movie ID]" />
+                <TableColumn fx:id="MovieTitle" prefWidth="75.0" text="[Movie Title]" />
+                <TableColumn fx:id="RateTitle" prefWidth="75.0" text="[Rate]" />
+                  <TableColumn fx:id="GenreTitle" prefWidth="75.0" text="[Genre ]" />
+                  <TableColumn fx:id="ReleaseYearTitle" prefWidth="75.0" text="[releaseYear]" />
+                  <TableColumn fx:id="rateingTitle" prefWidth="75.0" text="[rating]" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
