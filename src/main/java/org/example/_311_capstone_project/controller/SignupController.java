@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,35 +20,43 @@ public class SignupController {
 
     @FXML
     private Text confirmPass;
+
     @FXML
-    private TextField confirmPassText;
+    private PasswordField confirmpassfield;
 
     @FXML
     private Text email;
+
     @FXML
     private TextField emailText;
 
     @FXML
     private Text firstName;
+
     @FXML
     private TextField firstNameText;
 
     @FXML
     private Text lastName;
+
     @FXML
     private TextField lastNameText;
 
     @FXML
     private Button logIn;
+
     @FXML
     private Text pass;
+
     @FXML
-    private TextField passText;
+    private PasswordField passfeild;
 
     @FXML
     private Button signUp;
+
     @FXML
     private Text user;
+
     @FXML
     private TextField userText;
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -42,21 +42,21 @@
          </font>
       </Text>
       <Button fx:id="signUp" layoutX="694.0" layoutY="495.0" mnemonicParsing="false" onAction="#storeSignupDatabase" text="Sign - up" />
-      <Button fx:id="logIn" layoutX="687.0" layoutY="557.0" mnemonicParsing="false" onAction="#backToLoginPage" text="Back to Log-in" />
+      <Button fx:id="logIn" layoutX="681.0" layoutY="557.0" mnemonicParsing="false" onAction="#backToLoginPage" text="Back to Log-in" />
       <TextField fx:id="firstNameText" layoutX="639.0" layoutY="118.0" prefHeight="25.0" prefWidth="229.0" />
       <TextField fx:id="lastNameText" layoutX="639.0" layoutY="171.0" prefHeight="25.0" prefWidth="229.0" />
       <TextField fx:id="emailText" layoutX="639.0" layoutY="216.0" prefHeight="25.0" prefWidth="229.0" />
       <TextField fx:id="userText" layoutX="639.0" layoutY="265.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="passText" layoutX="639.0" layoutY="316.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="confirmPassText" layoutX="643.0" layoutY="361.0" prefHeight="25.0" prefWidth="229.0" />
-      <Text fill="#cc1616" layoutX="575.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(text to confirm sign-up has been confirmed)" />
+      <Text fill="#cc1616" layoutX="608.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(text to confirm sign-up has been confirmed)" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#232324" height="55.0" stroke="#0f0e0e" strokeType="INSIDE" width="893.0" />
       <Text fill="#f7f4f4" layoutX="291.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-Up New User Account">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Text>
-      <ImageView fitHeight="566.0" fitWidth="441.0" layoutX="13.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="566.0" fitWidth="467.0" layoutX="13.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          </ImageView>
+      <PasswordField fx:id="passfeild" layoutX="639.0" layoutY="315.0" prefHeight="25.0" prefWidth="229.0" />
+      <PasswordField fx:id="confirmpassfield" layoutX="639.0" layoutY="371.0" prefHeight="25.0" prefWidth="229.0" />
    </children>
 </AnchorPane>
