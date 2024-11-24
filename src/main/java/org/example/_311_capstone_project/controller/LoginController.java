@@ -49,6 +49,7 @@ public class LoginController {
             // Gets the current stage and sets it to the main screen scene
             Stage stage = (Stage) login.getScene().getWindow();
             Scene scene = new Scene(mainScreenRoot, 600, 400);
+            scene.getStylesheets().add(getClass().getResource("path/to/your/styles.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle("Main Screen");
             stage.show();
