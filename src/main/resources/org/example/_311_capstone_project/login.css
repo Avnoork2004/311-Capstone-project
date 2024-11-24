@@ -1,0 +1,54 @@
+
+
+:root {
+    --primary-color: #fafaff;
+    --secondary-color: #0f0e0e;
+    --highlight-color: #f04d4d;
+    --font-family: "Arial Rounded MT Bold", sans-serif;
+    --font-size-small: 15px;
+    --font-size-large: 20px;
+}
+
+.anchor-pane {
+    -fx-background-color: var(--primary-color);
+}
+
+.text {
+    -fx-font-family: var(--font-family);
+    -fx-font-size: var(--font-size-small);
+    -fx-fill: var(--secondary-color);
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-border-color: var(--secondary-color);
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.button {
+    -fx-background-color: var(--secondary-color);
+    -fx-text-fill: white;
+    -fx-font-family: var(--font-family);
+    -fx-font-size: var(--font-size-small);
+    -fx-padding: 10 20; /* Top/Bottom, Left/Right */
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color:var(--secondary-color), 10%;
+}
+
+.rectangle {
+    -fx-fill: var(--primary-color);
+    -fx-stroke: var(--secondary-color);
+    -fx-stroke-width: 1;
+    -fx-opacity: 0.8;
+}
+
+.error-text {
+    -fx-fill: var(--highlight-color);
+    -fx-font-family: var(--font-family);
+    -fx-font-size: var(--font-size-small);
+}
