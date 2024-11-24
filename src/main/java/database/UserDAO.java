@@ -17,10 +17,10 @@ public class UserDAO {
             statement.setString(4, user.getEmail());
             statement.setString(5, user.getPassword());
             int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0; // Returns true if insertion was successful
+            return rowsInserted > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Returns false if an error occurs
+            return false;
         }
     }
 
@@ -44,22 +44,30 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; // Return null if no user is found
+        return null;
     }
 
     // Login user
     public boolean loginUser(Connection connection, String username, String password) {
         User user = getUserByUsername(connection, username);
-        if (user != null) {
-            if (user.getPassword().equals(password)) { // Direct password comparison
-                System.out.println("Login successful for username: " + username);
-                return true;
-            } else {
-                System.out.println("Invalid password for username: " + username);
-            }
-        } else {
-            System.out.println("User not found with username: " + username);
+        if (user != null && user.getPassword().equals(password)) {
+            System.out.println("Login successful for username: " + username);
+            return true;
         }
-        return false; // Return false if login is unsuccessful
+        System.out.println("Invalid login credentials for username: " + username);
+        return false;
+    }
+
+    // Delete a user by ID
+    public boolean deleteUserById(Connection connection, int userId) {
+        String query = "DELETE FROM users WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            int rowsDeleted = statement.executeUpdate();
+            return rowsDeleted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

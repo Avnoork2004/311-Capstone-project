@@ -1,19 +1,14 @@
 package database;
-import java.sql.Timestamp;
-
 
 public class Rental {
     private int rentalId;
     private int userId;
     private int movieId;
-    private Timestamp rentalDate;
-    private Timestamp returnDate;
+    private String rentalDate;
+    private String returnDate;
 
-    // Default constructor
-    public Rental() {}
-
-    // Constructor with parameters
-    public Rental(int rentalId, int userId, int movieId, Timestamp rentalDate, Timestamp returnDate) {
+    // Constructor
+    public Rental(int rentalId, int userId, int movieId, String rentalDate, String returnDate) {
         this.rentalId = rentalId;
         this.userId = userId;
         this.movieId = movieId;
@@ -46,31 +41,19 @@ public class Rental {
         this.movieId = movieId;
     }
 
-    public Timestamp getRentalDate() {
+    public String getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(Timestamp rentalDate) {
+    public void setRentalDate(String rentalDate) {
         this.rentalDate = rentalDate;
     }
 
-    public Timestamp getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Timestamp returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
-    }
-
-    // toString() method
-    @Override
-    public String toString() {
-        return "Rental{" +
-                "rentalId=" + rentalId +
-                ", userId=" + userId +
-                ", movieId=" + movieId +
-                ", rentalDate=" + rentalDate +
-                ", returnDate=" + returnDate +
-                '}';
     }
 }
