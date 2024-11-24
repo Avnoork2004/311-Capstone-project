@@ -43,7 +43,7 @@ public class LoginController {
     void loginbtn(ActionEvent event) {
         try {
             // Loads mainscreen.fxml for the main application screen
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainscreen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
             Parent mainScreenRoot = fxmlLoader.load();
 
             // Gets the current stage and sets it to the main screen scene
