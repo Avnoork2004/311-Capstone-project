@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <MenuBar prefHeight="28.0" prefWidth="600.0">
+            <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="600.0">
               <menus>
                 <Menu mnemonicParsing="false" text="[Account Username]">
                   <items>
@@ -22,7 +22,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="History">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Sign out">

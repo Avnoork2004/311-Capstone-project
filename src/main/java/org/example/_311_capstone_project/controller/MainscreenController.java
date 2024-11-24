@@ -1,6 +1,7 @@
 package org.example._311_capstone_project.controller;
 import database.DatabaseConnection;
 import database.Movie;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,11 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 
@@ -27,7 +25,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-
+import javafx.scene.control.MenuBar;
 
 
 /**
@@ -69,6 +67,10 @@ public class MainscreenController implements Initializable {
     private MenuItem logout;
 
 
+    @FXML
+    private MenuBar MenuBar;
+
+
 
     ObservableList<Movie> list = FXCollections.observableArrayList();
 
@@ -77,12 +79,9 @@ public class MainscreenController implements Initializable {
         DatabaseConnection DC = new DatabaseConnection();
         Connection con = DC.getConnection();
 
-
         //Once title are finalize will finish select command
 
-
-        String movie = "SELECT movieId,title,genre,releaseYear,rating From Movie";
-
+        String movie = "SELECT movieId,title,genre,releaseYear,rating FROM Movie";
 
         // try and catch for the SQL command
 
@@ -100,7 +99,6 @@ public class MainscreenController implements Initializable {
                 //populate
                 list.add(new Movie(movieId, title, genre, releaseYear, rating));
 
-
                 MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("MovieID"));
                 MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
                 RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
@@ -115,28 +113,29 @@ public class MainscreenController implements Initializable {
             e.printStackTrace();
         }
 
-
-
-
-
-
+        logout.setOnAction(this::Logout);
 
     }
-    @FXML
     public void Logout(ActionEvent event) {
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
+        try {
+            // Load the login scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 600, 400);
 
-            Stage currentStage = (Stage)  ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+            // Get the current stage and close it
+            Stage currentStage = (Stage) MenuBar.getScene().getWindow();
+            currentStage.hide();  // Alternative to `close()`
 
-        }catch (Exception e){
+            // Open the new stage for login
+            Stage loginStage = new Stage();
+            loginStage.setScene(scene);
+            loginStage.show();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+
 }
