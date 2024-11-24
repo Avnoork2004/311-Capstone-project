@@ -54,7 +54,7 @@ public class SignupController {
     void backToLoginPage(ActionEvent event) {
         try {
             // Loads login.fxml for the login screen
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
             Parent loginRoot = fxmlLoader.load();
 
             // Sets the current stage to show the login screen
