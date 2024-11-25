@@ -47,11 +47,11 @@ public class RentalDAO {
     }
 
     // Retrieve rentals by user ID
-    public List<Rental> getRentalsByUserId(Connection connection, int userId) {
+    public List<Rental> getRentalsByUserId(Connection connection, String userId) {
         List<Rental> rentals = new ArrayList<>();
         String query = "SELECT * FROM rentals WHERE user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, userId);
+            statement.setInt(1, Integer.parseInt(userId));
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     rentals.add(new Rental(

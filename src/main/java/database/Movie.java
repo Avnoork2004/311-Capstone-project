@@ -18,6 +18,9 @@ public class Movie {
         this.availability = availability;
     }
 
+    public Movie(Integer movieId, String title, String genre, Integer releaseYear, Double rating) {
+    }
+
     // Getters and Setters
     public int getMovieId() {
         return movieId;
