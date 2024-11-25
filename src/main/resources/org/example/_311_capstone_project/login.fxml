@@ -20,16 +20,16 @@
                </font>
             </Text>
             <Text layoutX="463.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" />
-            <TextField fx:id="userField" layoutX="487.0" layoutY="403.0" />
-            <PasswordField fx:id="passField" layoutX="487.0" layoutY="444.0" />
+            <TextField fx:id="userField" layoutX="413.0" layoutY="403.0" prefHeight="25.0" prefWidth="242.0" promptText="Alphanumeric username (3-20 characters)" />
+            <PasswordField fx:id="passField" layoutX="413.0" layoutY="444.0" prefHeight="25.0" prefWidth="242.0" promptText="At least 1 upper, 1 lower, 1 digit, 8+ chars" />
             <Button fx:id="signup" layoutX="562.0" layoutY="528.0" mnemonicParsing="false" onAction="#signupbtn" text="Sign - up" />
             <Button fx:id="login" layoutX="317.0" layoutY="528.0" mnemonicParsing="false" onAction="#loginbtn" text="Log - In" />
-            <Text layoutX="338.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <Text layoutX="304.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Text>
-            <Text layoutX="339.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <Text layoutX="306.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
