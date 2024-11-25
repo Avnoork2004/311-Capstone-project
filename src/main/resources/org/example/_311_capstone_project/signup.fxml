@@ -12,22 +12,22 @@
 
 <AnchorPane prefHeight="633.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.SignupController">
    <children>
-      <Text fx:id="firstName" layoutX="536.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name :">
+      <Text fx:id="firstName" layoutX="526.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name :">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </Text>
-      <Text fx:id="lastName" layoutX="534.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name : ">
+      <Text fx:id="lastName" layoutX="521.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name : ">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </Text>
-      <Text fx:id="email" layoutX="545.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email: ">
+      <Text fx:id="email" layoutX="553.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email: ">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </Text>
-      <Text fx:id="user" layoutX="538.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: ">
+      <Text fx:id="user" layoutX="530.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: ">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
@@ -44,20 +44,20 @@
       </Text>
       <Button fx:id="signUp" layoutX="694.0" layoutY="495.0" mnemonicParsing="false" onAction="#storeSignupDatabase" text="Sign - up" />
       <Button fx:id="logIn" layoutX="681.0" layoutY="557.0" mnemonicParsing="false" onAction="#backToLoginPage" text="Back to Log-in" />
-      <TextField fx:id="firstNameField" layoutX="639.0" layoutY="118.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="lastNameField" layoutX="639.0" layoutY="171.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="emailField" layoutX="639.0" layoutY="216.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="userField" layoutX="639.0" layoutY="265.0" prefHeight="25.0" prefWidth="229.0" />
+      <TextField fx:id="firstNameField" layoutX="624.0" layoutY="118.0" prefHeight="25.0" prefWidth="244.0" promptText="Alphabetic characers (2-25)" />
+      <TextField fx:id="lastNameField" layoutX="624.0" layoutY="171.0" prefHeight="25.0" prefWidth="244.0" promptText="Alphabetic characers (2-25)" />
+      <TextField fx:id="emailField" layoutX="624.0" layoutY="216.0" prefHeight="25.0" prefWidth="244.0" promptText="email_id@domain.edu" />
+      <TextField fx:id="userField" layoutX="624.0" layoutY="265.0" prefHeight="25.0" prefWidth="244.0" promptText="Alphanumeric username (3-20 characters)" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#232324" height="55.0" stroke="#0f0e0e" strokeType="INSIDE" width="893.0" />
       <Text fill="#f7f4f4" layoutX="291.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-Up New User Account">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Text>
-      <ImageView fitHeight="566.0" fitWidth="467.0" layoutX="13.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="566.0" fitWidth="467.0" layoutX="12.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          </ImageView>
-      <PasswordField fx:id="passField" layoutX="639.0" layoutY="315.0" prefHeight="25.0" prefWidth="229.0" />
-      <PasswordField fx:id="confirmpassField" layoutX="639.0" layoutY="371.0" prefHeight="25.0" prefWidth="229.0" />
+      <PasswordField fx:id="passField" layoutX="624.0" layoutY="315.0" prefHeight="25.0" prefWidth="244.0" promptText="At least 1 upper, 1 lower, 1 digit, 8+ chars" />
+      <PasswordField fx:id="confirmpassField" layoutX="624.0" layoutY="371.0" prefHeight="25.0" prefWidth="244.0" promptText="Passwords must match" />
       <Label fx:id="validationMessage" layoutX="707.0" layoutY="438.0" />
    </children>
 </AnchorPane>
