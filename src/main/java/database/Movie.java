@@ -1,15 +1,15 @@
 package database;
 
 public class Movie {
-    private int movieId;
+    private Integer movieId;
     private String title;
     private String genre;
-    private String releaseDate;
-    private double rating;
-    private boolean availability;
+    private Integer releaseDate;
+    private Double rating;
+    private Boolean availability;
 
     // Constructor
-    public Movie(int movieId, String title, String genre, String releaseDate, double rating, boolean availability) {
+    public Movie(Integer movieId, String title, String genre, Integer releaseDate, Double rating, Boolean availability) {
         this.movieId = movieId;
         this.title = title;
         this.genre = genre;
@@ -43,11 +43,11 @@ public class Movie {
         this.genre = genre;
     }
 
-    public String getReleaseDate() {
+    public Integer getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Integer releaseDate) {
         this.releaseDate = releaseDate;
     }
 

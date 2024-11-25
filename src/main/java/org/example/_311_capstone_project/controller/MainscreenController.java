@@ -97,9 +97,9 @@ public class MainscreenController implements Initializable {
                 String genre = rs.getString("genre");
                 Integer releaseYear = rs.getInt("releaseYear");
                 Double rating = rs.getDouble("rating");
-
+                Boolean availability = rs.getBoolean("availability");
                 //populate
-                list.add(new Movie(movieId, title, genre, releaseYear, rating));
+                list.add(new Movie(movieId, title, genre, releaseYear, rating, availability));
 
                 MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("MovieID"));
                 MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));

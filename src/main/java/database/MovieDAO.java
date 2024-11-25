@@ -15,7 +15,7 @@ public class MovieDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, movie.getTitle());
             statement.setString(2, movie.getGenre());
-            statement.setString(3, movie.getReleaseDate());
+            statement.setInt(3, movie.getReleaseDate());
             statement.setDouble(4, movie.getRating());
             statement.setBoolean(5, movie.isAvailability());
             int rowsInserted = statement.executeUpdate();
@@ -37,7 +37,7 @@ public class MovieDAO {
                         resultSet.getInt("movie_id"),
                         resultSet.getString("title"),
                         resultSet.getString("genre"),
-                        resultSet.getString("release_date"),
+                        resultSet.getInt("release_date"),
                         resultSet.getDouble("rating"),
                         resultSet.getBoolean("availability")
                 ));
@@ -59,7 +59,7 @@ public class MovieDAO {
                             resultSet.getInt("movie_id"),
                             resultSet.getString("title"),
                             resultSet.getString("genre"),
-                            resultSet.getString("release_date"),
+                            resultSet.getInt("release_date"),
                             resultSet.getDouble("rating"),
                             resultSet.getBoolean("availability")
                     );
