@@ -83,21 +83,23 @@ public class MainscreenController implements Initializable {
 
         //Once title are finalize will finish select command
 
-        String movie = "SELECT movieId,title,genre,releaseYear,rating FROM Movie";
+        String movies = "SELECT movie_id, title, genre, release_date, rating, availability FROM movies";
+
 
         // try and catch for the SQL command
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(movie);
+            ResultSet rs = stmt.executeQuery(movies);
             while (rs.next()) {
 
-                Integer movieId = rs.getInt("movieId");
+                Integer movieId = rs.getInt("movie_id");
                 String title = rs.getString("title");
                 String genre = rs.getString("genre");
-                Integer releaseYear = rs.getInt("releaseYear");
+                Integer releaseYear = rs.getInt("release_date");
                 Double rating = rs.getDouble("rating");
                 Boolean availability = rs.getBoolean("availability");
+
                 //populate
                 list.add(new Movie(movieId, title, genre, releaseYear, rating, availability));
 
