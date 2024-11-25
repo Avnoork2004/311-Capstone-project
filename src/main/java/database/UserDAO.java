@@ -51,14 +51,22 @@ public class UserDAO {
     }
 
     // Login user
-    public boolean loginUser(Connection connection, String username, String password) {
-        User user = getUserByUsername(connection, username);
-        if (user != null && user.getPassword().equals(password)) {
-            System.out.println("Login successful for username: " + username);
-            return true;
+    // Login user
+    public boolean loginUser(String username, String password) {
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next(); // Returns true if a match is found
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-        System.out.println("Invalid login credentials for username: " + username);
-        return false;
     }
+
+
 
 }
