@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
 
         // Loads login screen from FXML file
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/org/example/_311_capstone_project/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 895, 650);
 
         // Sets the window title and displays the scene
         stage.setTitle("Hello!");

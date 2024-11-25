@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -112,7 +109,7 @@ public class SignupController {
 
             // Sets the current stage to show the login screen
             Stage stage = (Stage) logIn.getScene().getWindow();
-            Scene scene = new Scene(loginRoot, 600, 400);
+            Scene scene = new Scene(loginRoot, 895, 650);
             stage.setScene(scene);
             stage.setTitle("Login");
             stage.show();
@@ -122,13 +119,64 @@ public class SignupController {
     }
 
     // Store the signup information in the preferences database if valid
-    @FXML
+    /*@FXML
     private void storeSignupDatabase(ActionEvent event) {
         if (!signUp.isDisabled()) {
             validationMessage.setText("Registration Successful!"); //  success message moved to new gui
             //loadAnotherView(); // Calls method to load new view fxml
         } else {
             validationMessage.setText("Please correct the invalid fields."); // Displays error if form is invalid
+        }
+    }
+    */
+
+    //creates an account and stores credentials into preference file
+    public void storeSignupDatabase(ActionEvent actionEvent) {
+        // Retrieve input from fields
+        String username = userField.getText();
+        String password = passField.getText();
+        String email = emailField.getText();
+
+        // Check validity again before saving (if needed)
+        if (!username.matches(userRegex)) {
+            validationMessage.setText("Invalid username.");
+            return;
+        }
+        if (!password.matches(passRegex)) {
+            validationMessage.setText("Invalid password.");
+            return;
+        }
+        if (!confirmpassField.getText().equals(password)) { // Fixed line
+            validationMessage.setText("Passwords do not match.");
+            return;
+        }
+        if (!email.matches(emailRegex)) {
+            validationMessage.setText("Invalid email.");
+            return;
+        }
+
+        try {
+            // Store data in Preferences
+            Preferences userPreferences = Preferences.userRoot().node(this.getClass().getName());
+            userPreferences.put("USERNAME", username);
+            userPreferences.put("PASSWORD", password);
+            userPreferences.put("EMAIL", email);
+
+            // Set the current user session
+            UserSession.getInstance(username, password);
+
+            // Show success alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Account Created");
+            alert.setContentText("Your account has been successfully created and stored.");
+            alert.showAndWait();
+
+            // Redirect to login screen
+            backToLoginPage(actionEvent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            validationMessage.setText("Error storing account information. Please try again.");
         }
     }
 
