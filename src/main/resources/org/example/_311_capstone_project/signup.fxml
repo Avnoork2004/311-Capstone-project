@@ -58,6 +58,6 @@
          </ImageView>
       <PasswordField fx:id="passField" layoutX="624.0" layoutY="315.0" prefHeight="25.0" prefWidth="244.0" promptText="At least 1 upper, 1 lower, 1 digit, 8+ chars" />
       <PasswordField fx:id="confirmpassField" layoutX="624.0" layoutY="371.0" prefHeight="25.0" prefWidth="244.0" promptText="Passwords must match" />
-      <Label fx:id="validationMessage" layoutX="633.0" layoutY="439.0" prefHeight="17.0" prefWidth="82.0" />
+      <Label fx:id="validationMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="524.0" layoutY="439.0" prefHeight="17.0" prefWidth="306.0" />
    </children>
 </AnchorPane>
