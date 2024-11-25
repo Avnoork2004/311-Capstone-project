@@ -3,6 +3,7 @@ module org.example._311_capstone_project {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires java.prefs;
 
 
     opens org.example._311_capstone_project to javafx.fxml;
