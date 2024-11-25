@@ -1,5 +1,7 @@
 package org.example._311_capstone_project.controller;
 
+import database.DatabaseConnection;
+import database.User;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -12,9 +14,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import database.User;
+import database.UserDAO;
+import database.DatabaseConnection;
 
 // Controller for handling user signup operations and navigating back to the login screen
 public class SignupController {
@@ -131,13 +138,17 @@ public class SignupController {
     */
 
     //creates an account and stores credentials into preference file
+    @FXML
     public void storeSignupDatabase(ActionEvent actionEvent) {
         // Retrieve input from fields
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
         String username = userField.getText();
-        String password = passField.getText();
         String email = emailField.getText();
+        String password = passField.getText();
+        String confirmPassword = confirmpassField.getText();
 
-        // Check validity again before saving (if needed)
+        // Validate inputs
         if (!username.matches(userRegex)) {
             validationMessage.setText("Invalid username.");
             return;
@@ -146,7 +157,7 @@ public class SignupController {
             validationMessage.setText("Invalid password.");
             return;
         }
-        if (!confirmpassField.getText().equals(password)) { // Fixed line
+        if (!confirmPassword.equals(password)) {
             validationMessage.setText("Passwords do not match.");
             return;
         }
@@ -155,30 +166,27 @@ public class SignupController {
             return;
         }
 
-        try {
-            // Store data in Preferences
-            Preferences userPreferences = Preferences.userRoot().node(this.getClass().getName());
-            userPreferences.put("USERNAME", username);
-            userPreferences.put("PASSWORD", password);
-            userPreferences.put("EMAIL", email);
+        // Create a User object
+        User newUser = new User(0, firstName, lastName, username, email, password);
 
-            // Set the current user session
-            UserSession.getInstance(username, password);
+        // Save the user to the database
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            UserDAO userDAO = new UserDAO();
+            boolean isUserCreated = userDAO.createUser(connection, newUser);
 
-            // Show success alert
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Account Created");
-            alert.setContentText("Your account has been successfully created and stored.");
-            alert.showAndWait();
-
-            // Redirect to login screen
-            backToLoginPage(actionEvent);
-
+            if (isUserCreated) {
+                validationMessage.setText("Account created successfully!");
+                // Redirect to login page
+                backToLoginPage(actionEvent);
+            } else {
+                validationMessage.setText("Failed to create account. Please try again.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            validationMessage.setText("Error storing account information. Please try again.");
+            validationMessage.setText("An error occurred while saving the account.");
         }
     }
+
 
     private void addFocusListeners() {
         firstNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
