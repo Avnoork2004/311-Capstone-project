@@ -1,20 +1,19 @@
 package org.example._311_capstone_project.controller;
+
 import database.DatabaseConnection;
 import database.Movie;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -22,26 +21,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.scene.control.MenuBar;
 
-
-/**
- * @author paris
- * @version1.0
- * @date 11/16
- * working on a shell(base) code for MainScreen(mainly the search bar funcation), things will subject to change
- * as well as more func
- */
-
-
-// Controller class for the main screen, will be expanded with main screen functionality
 public class MainscreenController implements Initializable {
 
-
-    //may add/ change the titles to match with other class
     @FXML
     private TableColumn<Movie, String> GenreTitle;
 
@@ -61,6 +43,9 @@ public class MainscreenController implements Initializable {
     private TableColumn<Movie, Integer> ReleaseYearTitle;
 
     @FXML
+    private TableColumn<Movie, Void> ActionTitle;
+
+    @FXML
     private TextField Search;
 
     @FXML
@@ -72,8 +57,6 @@ public class MainscreenController implements Initializable {
     @FXML
     private MenuItem History;
 
-
-
     ObservableList<Movie> list = FXCollections.observableArrayList();
 
     @Override
@@ -81,12 +64,7 @@ public class MainscreenController implements Initializable {
         DatabaseConnection DC = new DatabaseConnection();
         Connection con = DC.getConnection();
 
-        //Once title are finalize will finish select command
-
         String movies = "SELECT movie_id, title, genre, release_date, rating, availability FROM movies";
-
-
-        // try and catch for the SQL command
 
         try {
             Statement stmt = con.createStatement();
@@ -100,40 +78,82 @@ public class MainscreenController implements Initializable {
                 Double rating = rs.getDouble("rating");
                 Boolean availability = rs.getBoolean("availability");
 
-                //populate
                 list.add(new Movie(movieId, title, genre, releaseYear, rating, availability));
-
-                MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("MovieID"));
-                MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-                RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
-                ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
-                GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
-
-                MovieTable.setItems(list);
-
             }
+
+            MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("movieID"));
+            MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
+            ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
+            GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+            MovieTable.setItems(list);
+
+            addButtonToTable();
+
         } catch (SQLException e) {
-            Logger.getLogger(MainscreenController.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
         }
 
         logout.setOnAction(this::Logout);
         History.setOnAction(this::gotoHistory);
-
-
     }
+
+    private void addButtonToTable() {
+        Callback<TableColumn<Movie, Void>, TableCell<Movie, Void>> cellFactory = param -> new TableCell<>() {
+            private final Button rentButton = new Button("Rent");
+
+            {
+                rentButton.setOnAction((ActionEvent event) -> {
+                    Movie movie = getTableView().getItems().get(getIndex());
+                    if (movie != null) {
+                        updateBorrowed(movie);
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(rentButton);
+                }
+            }
+        };
+
+        ActionTitle.setCellFactory(cellFactory);
+    }
+
+    private void updateBorrowed(Movie movie) {
+        // Call the BorrowedController to update the table
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
+            Parent root = loader.load();
+
+            BorrowedController borrowedController = loader.getController();
+            borrowedController.addBorrowedMovie(movie);
+
+            // Navigate to the Borrowed screen
+            Stage stage = (Stage) MovieTable.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void Logout(ActionEvent event) {
         try {
-            // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 600, 400);
 
-            // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
-            currentStage.hide();  // Alternative to `close()`
+            currentStage.hide();
 
-            // Open the new stage for login
             Stage loginStage = new Stage();
             loginStage.setScene(scene);
             loginStage.show();
@@ -142,19 +162,17 @@ public class MainscreenController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     void gotoHistory(ActionEvent event) {
         try {
-            // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 600, 400);
 
-            // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
-            currentStage.hide();  // Alternative to `close()`
+            currentStage.hide();
 
-            // Open the new stage for login
             Stage loginStage = new Stage();
             loginStage.setScene(scene);
             loginStage.show();
@@ -162,6 +180,5 @@ public class MainscreenController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

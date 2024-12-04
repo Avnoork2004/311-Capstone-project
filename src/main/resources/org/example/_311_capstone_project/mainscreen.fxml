@@ -42,6 +42,7 @@
                   <TableColumn fx:id="GenreTitle" prefWidth="75.0" text="[Genre ]" />
                   <TableColumn fx:id="ReleaseYearTitle" prefWidth="75.0" text="[releaseYear]" />
                   <TableColumn fx:id="rateingTitle" prefWidth="75.0" text="[rating]" />
+                  <TableColumn fx:id="ActionTitle" prefWidth="75.0" text="[Action]" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
