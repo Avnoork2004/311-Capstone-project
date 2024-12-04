@@ -127,7 +127,7 @@ public class MainscreenController implements Initializable {
             // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 895, 650);
 
             // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
@@ -148,7 +148,7 @@ public class MainscreenController implements Initializable {
             // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 895, 650);
 
             // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
