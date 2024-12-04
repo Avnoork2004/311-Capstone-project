@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.BorrowedController">
-   <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <MenuBar layoutY="1.0" prefHeight="28.0" prefWidth="600.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="History">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <Text layoutX="214.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Borrowed Titles">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <TableView fx:id="borrowedTable" layoutY="81.0" prefHeight="318.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="titleColumn" prefWidth="75.0" text="[Movie Title]" />
-                  <TableColumn fx:id="genreColumn" prefWidth="75.0" text="[genre]" />
-                <TableColumn fx:id="dateBorrowed" prefWidth="75.0" text="[Date Borrowed]" />
-                  <TableColumn fx:id="dateBorrowed" prefWidth="75.0" text="[Date Borrowed]" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example._311_capstone_project.controller.BorrowedController"
+            prefHeight="500.0" prefWidth="650.0">
+    <!-- Header Label -->
+    <Label layoutX="20.0" layoutY="20.0" text="Rented Movies" style="-fx-font-weight: bold;">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
 
+    <!-- TableView -->
+    <TableView fx:id="borrowedTable" layoutX="20.0" layoutY="70.0" prefWidth="610.0" prefHeight="400.0">
+        <columns>
+            <TableColumn fx:id="borrowedTitle" text="Title" prefWidth="250.0"/>
+            <TableColumn fx:id="borrowedGenre" text="Genre" prefWidth="200.0"/>
+            <TableColumn fx:id="borrowedYear" text="Release Year" prefWidth="150.0"/>
+        </columns>
+    </TableView>
 </AnchorPane>
