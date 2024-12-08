@@ -17,11 +17,8 @@
                <children>
                   <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="885.0">
                     <menus>
-                      <Menu mnemonicParsing="false" text="[Account Username]">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
+                      <Menu mnemonicParsing="false" text="[Account Username]" />
+                        <Menu fx:id="aboutBtn" mnemonicParsing="false" onAction="#displayAboutInfo" text="About" />
                       <Menu mnemonicParsing="false" text="History">
                         <items>
                           <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
