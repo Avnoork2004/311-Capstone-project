@@ -1,5 +1,7 @@
 package org.example._311_capstone_project.controller;
 
+import database.DatabaseConnection;
+import database.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.prefs.Preferences;
 
 // Controller for the login screen navigating to the Signup or Main Screen
@@ -74,26 +77,20 @@ public class LoginController {
         String enteredUsername = userField.getText();
         String enteredPassword = passField.getText();
 
-        // Access stored credentials from Preferences
-        Preferences userPreferences = Preferences.userRoot().node(SignupController.class.getName());
-        String storedUsername = userPreferences.get("USERNAME", null);
-        String storedPassword = userPreferences.get("PASSWORD", null);
+        UserDAO userDAO = new UserDAO();
+        boolean isValid = userDAO.loginUser(enteredUsername, enteredPassword);
 
-        if (storedUsername == null || storedPassword == null) {
-            // No user account exists
-            showErrorAlert("No account found. Please sign up first.");
-            return;
-        }
+        if (isValid) {
+            // Login successful
+            System.out.println("User logged in successfully.");
 
-        // Validate credentials
-        if (enteredUsername.equals(storedUsername) && enteredPassword.equals(storedPassword)) {
-            // Login successful, set user session
-            UserSession.getInstance(storedUsername, storedPassword);
+            // Set user session
+            UserSession.getInstance(enteredUsername, enteredPassword);
 
             // Redirect to the next screen
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
-                Scene scene = new Scene(root, 600, 400);
+                Scene scene = new Scene(root, 895, 650);
                 scene.getStylesheets().add(getClass().getResource("/org/example/_311_capstone_project/style.css").toExternalForm());
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 window.setScene(scene);
@@ -103,7 +100,7 @@ public class LoginController {
                 showErrorAlert("Failed to load the application interface.");
             }
         } else {
-            // Credentials do not match
+            // Invalid credentials
             showErrorAlert("Invalid username or password. Please try again.");
         }
     }

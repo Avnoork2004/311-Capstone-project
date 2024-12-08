@@ -1,7 +1,6 @@
 package org.example._311_capstone_project.controller;
 
 import database.DatabaseConnection;
-import database.User;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import java.sql.Connection;
 import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import database.User;
 import database.UserDAO;
 import database.DatabaseConnection;
@@ -73,10 +71,10 @@ public class SignupController {
 
 
     // Regex for validation (checked with regex101)
-    private final String nameRegex = "^[a-zA-Z]{2,25}$";
-    private final String userRegex = "^[a-zA-Z0-9]{3,20}$";  // Alphanumeric username (3-20 characters)
-    private final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\\.[a-zA-Z]{2,6}$"; // Standard email format
-    private final String passRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$"; // At least 1 upper, 1 lower, 1 digit, 8+ chars
+    private static final String nameRegex = "^[a-zA-Z]{2,25}$";
+    private static final String userRegex = "^[a-zA-Z0-9]{3,20}$";  // Alphanumeric username (3-20 characters)
+    private static final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"; //example.user123@gmail.com
+    private static final String passRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$"; // At least 1 upper, 1 lower, 1 digit, 8+ chars
 
 
     @FXML
