@@ -26,16 +26,15 @@ public class BorrowedController {
 
     @FXML
     public void initialize() {
-        // Bind table columns to Movie properties
+        // Bind columns to Movie properties
         borrowedTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         borrowedGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        borrowedYear.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
-
-        // Set the observable list for the TableView
+        borrowedYear.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
         borrowedTable.setItems(borrowedMovies);
     }
 
     public void addBorrowedMovie(Movie movie) {
         borrowedMovies.add(movie);
+        borrowedTable.setItems(borrowedMovies); // Refresh table
     }
 }

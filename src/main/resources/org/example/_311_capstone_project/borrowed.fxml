@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example._311_capstone_project.controller.BorrowedController"
-            prefHeight="500.0" prefWidth="650.0">
-    <!-- Header Label -->
-    <Label layoutX="20.0" layoutY="20.0" text="Rented Movies" style="-fx-font-weight: bold;">
-        <font>
-            <Font size="24.0"/>
-        </font>
-    </Label>
-
-    <!-- TableView -->
-    <TableView fx:id="borrowedTable" layoutX="20.0" layoutY="70.0" prefWidth="610.0" prefHeight="400.0">
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example._311_capstone_project.controller.BorrowedController" spacing="10" alignment="CENTER">
+    <!-- TableView for borrowed movies -->
+    <TableView fx:id="borrowedTable" prefWidth="600">
         <columns>
-            <TableColumn fx:id="borrowedTitle" text="Title" prefWidth="250.0"/>
-            <TableColumn fx:id="borrowedGenre" text="Genre" prefWidth="200.0"/>
-            <TableColumn fx:id="borrowedYear" text="Release Year" prefWidth="150.0"/>
+            <TableColumn fx:id="borrowedTitle" text="Title" prefWidth="200" />
+            <TableColumn fx:id="borrowedGenre" text="Genre" prefWidth="200" />
+            <TableColumn fx:id="borrowedYear" text="Year" prefWidth="200" />
         </columns>
     </TableView>
-</AnchorPane>
+</VBox>

@@ -2,6 +2,7 @@ package org.example._311_capstone_project.controller;
 
 import database.DatabaseConnection;
 import database.Movie;
+import database.MovieDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainscreenController implements Initializable {
@@ -59,47 +61,37 @@ public class MainscreenController implements Initializable {
 
     ObservableList<Movie> list = FXCollections.observableArrayList();
 
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        DatabaseConnection DC = new DatabaseConnection();
-        Connection con = DC.getConnection();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupTableColumns();
+        loadMovies();
+        addButtonToTable();
+    }
 
-        String movies = "SELECT movie_id, title, genre, release_date, rating, availability FROM movies";
+    private void setupTableColumns() {
+        // Configure other columns
+        MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("movieId"));
+        MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
+    }
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(movies);
-            while (rs.next()) {
-
-                Integer movieId = rs.getInt("movie_id");
-                String title = rs.getString("title");
-                String genre = rs.getString("genre");
-                Integer releaseYear = rs.getInt("release_date");
-                Double rating = rs.getDouble("rating");
-                Boolean availability = rs.getBoolean("availability");
-
-                list.add(new Movie(movieId, title, genre, releaseYear, rating, availability));
-            }
-
-            MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("movieID"));
-            MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-            RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
-            ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
-            GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
-
+    private void loadMovies() {
+        list.clear();
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            MovieDAO movieDAO = new MovieDAO();
+            List<Movie> movies = movieDAO.getAllMovies(connection);
+            list.addAll(movies);
             MovieTable.setItems(list);
-
-            addButtonToTable();
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        logout.setOnAction(this::Logout);
-        History.setOnAction(this::gotoHistory);
     }
 
     private void addButtonToTable() {
+        // Create a cell factory to generate Rent buttons
         Callback<TableColumn<Movie, Void>, TableCell<Movie, Void>> cellFactory = param -> new TableCell<>() {
             private final Button rentButton = new Button("Rent");
 
@@ -107,7 +99,7 @@ public class MainscreenController implements Initializable {
                 rentButton.setOnAction((ActionEvent event) -> {
                     Movie movie = getTableView().getItems().get(getIndex());
                     if (movie != null) {
-                        updateBorrowed(movie);
+                        copyToBorrowedTable(movie);
                     }
                 });
             }
@@ -123,19 +115,20 @@ public class MainscreenController implements Initializable {
             }
         };
 
+        // Assign the cell factory to the ActionTitle column
         ActionTitle.setCellFactory(cellFactory);
     }
 
-    private void updateBorrowed(Movie movie) {
-        // Call the BorrowedController to update the table
+    private void copyToBorrowedTable(Movie movie) {
         try {
+            // Load BorrowedController
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
             Parent root = loader.load();
 
             BorrowedController borrowedController = loader.getController();
             borrowedController.addBorrowedMovie(movie);
 
-            // Navigate to the Borrowed screen
+            // Navigate to Borrowed screen
             Stage stage = (Stage) MovieTable.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
