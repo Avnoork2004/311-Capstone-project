@@ -95,4 +95,54 @@ public class RentalDAO {
             return false;
         }
     }
+    public boolean isMovieAvailable(Connection connection, int movieId) {
+        String query = "SELECT copies_available FROM movies WHERE movie_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, movieId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("copies_available") > 0; // Returns true if available
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean decrementMovieCopies(Connection connection, int movieId) {
+        String query = "UPDATE movies SET copies_available = copies_available - 1 WHERE movie_id = ? AND copies_available > 0";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, movieId);
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean incrementMovieCopies(Connection connection, int movieId) {
+        String query = "UPDATE movies SET copies_available = copies_available + 1 WHERE movie_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, movieId);
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean logTransaction(Connection connection, int userId, int movieId, String action) {
+        String query = "INSERT INTO transaction_history (user_id, movie_id, action) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            statement.setInt(2, movieId);
+            statement.setString(3, action); // "RENTAL" or "RETURN"
+            int rowsInserted = statement.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

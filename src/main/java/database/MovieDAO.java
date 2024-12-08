@@ -97,4 +97,91 @@ public class MovieDAO {
             return false;
         }
     }
+    public List<Movie> searchMoviesByTitle(Connection connection, String title) {
+        List<Movie> movies = new ArrayList<>();
+        String query = "SELECT * FROM movies WHERE title LIKE ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, "%" + title + "%"); // Matches any title containing the given string
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    movies.add(new Movie(
+                            resultSet.getInt("movie_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("genre"),
+                            resultSet.getInt("release_date"),
+                            resultSet.getDouble("rating"),
+                            resultSet.getBoolean("availability")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+    public List<Movie> filterMoviesByGenre(Connection connection, String genre) {
+        List<Movie> movies = new ArrayList<>();
+        String query = "SELECT * FROM movies WHERE genre = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, genre);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    movies.add(new Movie(
+                            resultSet.getInt("movie_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("genre"),
+                            resultSet.getInt("release_date"),
+                            resultSet.getDouble("rating"),
+                            resultSet.getBoolean("availability")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+    public List<Movie> filterMoviesByAvailability(Connection connection) {
+        List<Movie> movies = new ArrayList<>();
+        String query = "SELECT * FROM movies WHERE availability = TRUE";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                movies.add(new Movie(
+                        resultSet.getInt("movie_id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("genre"),
+                        resultSet.getInt("release_date"),
+                        resultSet.getDouble("rating"),
+                        resultSet.getBoolean("availability")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+    public List<Movie> filterMoviesByRating(Connection connection, double minRating) {
+        List<Movie> movies = new ArrayList<>();
+        String query = "SELECT * FROM movies WHERE rating >= ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDouble(1, minRating);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    movies.add(new Movie(
+                            resultSet.getInt("movie_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("genre"),
+                            resultSet.getInt("release_date"),
+                            resultSet.getDouble("rating"),
+                            resultSet.getBoolean("availability")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
 }
