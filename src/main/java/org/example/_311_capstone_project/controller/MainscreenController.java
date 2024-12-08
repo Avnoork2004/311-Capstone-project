@@ -30,10 +30,9 @@ import javafx.scene.control.MenuBar;
 
 /**
  * @author paris
- * @version1.0
- * @date 11/16
- * working on a shell(base) code for MainScreen(mainly the search bar funcation), things will subject to change
- * as well as more func
+ * @version 2.0
+ * @date 12/8
+ *
  */
 
 
@@ -72,8 +71,6 @@ public class MainscreenController implements Initializable {
     @FXML
     private MenuItem History;
 
-
-
     ObservableList<Movie> list = FXCollections.observableArrayList();
 
     @Override
@@ -88,9 +85,8 @@ public class MainscreenController implements Initializable {
 
         // try and catch for the SQL command
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(movies);
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(movies);) {
             while (rs.next()) {
 
                 Integer movieId = rs.getInt("movie_id");
@@ -127,7 +123,7 @@ public class MainscreenController implements Initializable {
             // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 895, 650);
 
             // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
@@ -148,7 +144,7 @@ public class MainscreenController implements Initializable {
             // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/borrowed.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 895, 650);
 
             // Get the current stage and close it
             Stage currentStage = (Stage) MenuBar.getScene().getWindow();
@@ -164,4 +160,5 @@ public class MainscreenController implements Initializable {
         }
 
     }
+
 }
