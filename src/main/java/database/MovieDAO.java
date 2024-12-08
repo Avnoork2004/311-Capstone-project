@@ -183,5 +183,42 @@ public class MovieDAO {
         }
         return movies;
     }
+    public boolean updateMovieDetails(Connection connection, Movie movie) {
+        String query = "UPDATE movies SET title = ?, genre = ?, release_date = ?, rating = ? WHERE movie_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, movie.getTitle());
+            statement.setString(2, movie.getGenre());
+            statement.setInt(3, movie.getReleaseDate());
+            statement.setDouble(4, movie.getRating());
+            statement.setInt(5, movie.getMovieId());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public List<Movie> getTopRatedMovies(Connection connection, int limit) {
+        List<Movie> movies = new ArrayList<>();
+        String query = "SELECT * FROM movies ORDER BY rating DESC LIMIT ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, limit);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    movies.add(new Movie(
+                            resultSet.getInt("movie_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("genre"),
+                            resultSet.getInt("release_date"),
+                            resultSet.getDouble("rating"),
+                            resultSet.getBoolean("availability")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
 
 }
