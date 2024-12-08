@@ -53,7 +53,6 @@ public class UserDAO {
     }
 
     // Login user
-    // Login user
     public boolean loginUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -61,14 +60,14 @@ public class UserDAO {
             statement.setString(1, username);
             statement.setString(2, password);
             try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next(); // Returns true if a match is found
+                if (resultSet.next()) {
+                    return true; // User found
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-
-        System.out.println("Invalid login credentials for username: " + username);
+        System.out.println("Invalid login credentials for username: " + username); // Moved here
         return false;
     }
     public boolean updateUser(Connection connection, User user) {
@@ -106,6 +105,5 @@ public class UserDAO {
         return users;
     }
 
-
     }
-}
+
