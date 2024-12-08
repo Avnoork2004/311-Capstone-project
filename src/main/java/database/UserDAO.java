@@ -52,6 +52,7 @@ public class UserDAO {
         return null;
     }
 
+
     // Login user
     public boolean loginUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
