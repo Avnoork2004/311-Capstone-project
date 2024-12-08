@@ -117,7 +117,7 @@ public class MainscreenController implements Initializable {
             e.printStackTrace();
         }
 
-        logout.setOnAction(this::Logout);
+        logout.setOnAction(this::logout);
         History.setOnAction(this::gotoHistory);
 
 
@@ -147,7 +147,7 @@ public class MainscreenController implements Initializable {
 
 
 
-    public void Logout(ActionEvent event) {
+    public void logout(ActionEvent event) {
         try {
             // Load the login scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
