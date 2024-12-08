@@ -13,21 +13,18 @@ public class UserDAO {
     public boolean createUser(Connection connection, User user) {
         String query = "INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            System.out.println("Preparing to insert user: " + user.getUsername());
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getUsername());
             statement.setString(4, user.getEmail());
             statement.setString(5, user.getPassword());
             int rowsInserted = statement.executeUpdate();
-            System.out.println("Rows inserted: " + rowsInserted);
             return rowsInserted > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
 
     // Retrieve a user by username
     public User getUserByUsername(Connection connection, String username) {
@@ -53,7 +50,6 @@ public class UserDAO {
     }
 
     // Login user
-    // Login user
     public boolean loginUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -61,29 +57,15 @@ public class UserDAO {
             statement.setString(1, username);
             statement.setString(2, password);
             try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next(); // Returns true if a match is found
+                if (resultSet.next()) {
+                    return true; // User found
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-
-        System.out.println("Invalid login credentials for username: " + username);
+        System.out.println("Invalid login credentials for username: " + username); // Moved here
         return false;
-    }
-    public boolean updateUser(Connection connection, User user) {
-        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE username = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getPassword());
-            statement.setString(5, user.getUsername());
-            return statement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
     public List<User> getAllUsers(Connection connection) {
         List<User> users = new ArrayList<>();
@@ -106,6 +88,4 @@ public class UserDAO {
         return users;
     }
 
-
-    }
 }
