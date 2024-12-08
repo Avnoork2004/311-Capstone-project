@@ -19,7 +19,7 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="History">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
+                          <MenuItem fx:id="historyBtn" mnemonicParsing="false" onAction="#closeHistoryBtn" text="Close" />
                         </items>
                       </Menu>
                     </menus>
