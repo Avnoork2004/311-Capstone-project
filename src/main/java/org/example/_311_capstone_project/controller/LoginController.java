@@ -90,7 +90,7 @@ public class LoginController {
             // Redirect to the next screen
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
-                Scene scene = new Scene(root, 600, 400);
+                Scene scene = new Scene(root, 895, 650);
                 scene.getStylesheets().add(getClass().getResource("/org/example/_311_capstone_project/style.css").toExternalForm());
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 window.setScene(scene);
