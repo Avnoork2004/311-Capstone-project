@@ -3,7 +3,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.AboutController">
    <children>
@@ -20,6 +23,36 @@
                         </Menu>
                      </menus>
                   </MenuBar>
+                  <ScrollPane layoutX="14.0" layoutY="34.0" prefHeight="577.0" prefWidth="865.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="864.0">
+                           <children>
+                              <Text layoutX="23.0" layoutY="111.0" lineSpacing="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MediaVault is a movie rental application designed to provide users with an enjoyable experience for browsing and renting their favorite media. The application offers a simple, user-friendly interface and allows users to browse a variety of movies, securely log in to their account, and access movies based on their genre or language selection. MediaVault is intended for all teenagers and adults to access physical copies of media to enjoy." wrappingWidth="795.5999565124512" />
+                              <Text layoutX="370.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="378.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Features">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="17.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login/Sign Up: Landing page greeting users with the login screen to authenticate current users or the option to register a new account" wrappingWidth="803.6000137329102" />
+                              <Text layoutX="17.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Screen/Search: Accessible after user authentication, displays the movie search engine" wrappingWidth="796.8000297546387" />
+                              <Text layoutX="17.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Borrow/Return Page: Reserve physical movies through the application to pick up in-store" wrappingWidth="799.6000480651855" />
+                              <Text layoutX="17.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Profile: Displays User information and movies on the watch list" wrappingWidth="798.7999687194824" />
+                              <Text layoutX="17.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History: Allows users to view previously borrowed titles" wrappingWidth="804.7999992370605" />
+                              <Text layoutX="17.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout: Signs users out of the application and returns to the login screen." wrappingWidth="798.0000419616699" />
+                              <Text layoutX="397.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© MediaVault">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
          </children>
