@@ -40,6 +40,10 @@ import javafx.scene.control.MenuBar;
 // Controller class for the main screen, will be expanded with main screen functionality
 public class MainscreenController implements Initializable {
 
+    @FXML
+    private MenuItem aboutBtn;
+
+
 
     //may add/ change the titles to match with other class
     @FXML
@@ -122,6 +126,31 @@ public class MainscreenController implements Initializable {
 
 
     }
+
+    @FXML
+    void displayAboutInfo(ActionEvent event) {
+        try {
+            // Load the main screen scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/about.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 895, 650);
+
+            // Get the current stage using the event source
+            Stage currentStage = (Stage) aboutBtn.getParentPopup().getOwnerWindow();
+            currentStage.close();
+
+            // Open the new stage for the main screen
+            Stage mainStage = new Stage();
+            mainStage.setScene(scene);
+            mainStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void Logout(ActionEvent event) {
         try {
             // Load the login scene
