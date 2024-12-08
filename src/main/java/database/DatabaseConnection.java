@@ -16,6 +16,7 @@ public class DatabaseConnection {
                         DatabaseConfig.URL + DatabaseConfig.SSL,
                         DatabaseConfig.USERNAME,
                         DatabaseConfig.PASSWORD
+
                 );
                 System.out.println("Connected to the database successfully!");
             }
