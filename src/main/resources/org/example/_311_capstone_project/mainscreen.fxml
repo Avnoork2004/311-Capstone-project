@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Label?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.MainscreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@mainscreen.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.MainscreenController">
     <children>
         <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="633.0" prefWidth="893.0">
             <children>
                 <AnchorPane prefHeight="400.0" prefWidth="600.0">
                     <children>
-                        <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="885.0">
+                        <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="885.0" stylesheets="@mainscreen.css">
                             <menus>
                                 <!-- Menu for displaying the username -->
                                 <Menu mnemonicParsing="false">
                                     <graphic>
-                                        <Label fx:id="usernameLabel" text="[Account Username]" style="-fx-text-fill: black; -fx-font-size: 14px;" />
+                                        <Label fx:id="usernameLabel" style="-fx-text-fill: black; -fx-font-size: 14px;" text="[Account Username]" textFill="#c8d8e7" />
                                     </graphic>
                                 </Menu>
                                 <!-- About Menu -->
-                                <Menu mnemonicParsing="false" text="About">
+                                <Menu mnemonicParsing="false" style="text-fill: C8D8E7;" text="About">
                                     <items>
                                         <MenuItem fx:id="aboutBtn" mnemonicParsing="false" onAction="#displayAboutInfo" text="go to About" />
                                     </items>
                                 </Menu>
                                 <!-- History Menu -->
-                                <Menu mnemonicParsing="false" text="History">
+                                <Menu mnemonicParsing="false" style="text-fill: C8D8E7;" text="History">
                                     <items>
                                         <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
                                     </items>
                                 </Menu>
                                 <!-- Sign out Menu -->
-                                <Menu mnemonicParsing="false" text="Sign out">
+                                <Menu mnemonicParsing="false" style="text-fill: C8D8E7;" text="Sign out">
                                     <items>
                                         <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="logout" />
                                     </items>

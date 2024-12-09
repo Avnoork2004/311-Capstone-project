@@ -1,0 +1,70 @@
+
+.anchor-pane {
+    -fx-background-color: #C8D8E7;
+}
+
+
+.menu-bar {
+    -fx-background-color: #224f75;
+    -fx-text-fill: #ffffff;
+}
+
+
+.menu {
+    -fx-text-fill: #C8D8E7;
+}
+
+
+.menu-item {
+    -fx-background-color: #224F75;
+    -fx-text-fill: #C8D8E7;
+}
+
+
+.menu-item:hover {
+    -fx-background-color: #256279;
+}
+
+
+.search-label {
+    -fx-fill: #03152D;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #256279;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+    -fx-font-size: 14px;
+}
+
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #256279;
+}
+
+
+.table-view .column-header {
+    -fx-background-color: #224F75;
+    -fx-text-fill: #C8D8E7;
+    -fx-font-weight: bold;
+}
+
+
+.table-view .table-cell {
+    -fx-text-fill: #03152D;
+}
+
+
+.table-view .table-cell:hover {
+    -fx-background-color: #63949E;
+}
+
+
+.username-label {
+    -fx-text-fill: #C8D8E7;
+    -fx-font-size: 14px;
+}
