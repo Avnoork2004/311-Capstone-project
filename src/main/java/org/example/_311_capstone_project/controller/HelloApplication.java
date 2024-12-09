@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         // Load the splash screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/SplashScreen.fxml"));
         Parent splashRoot = loader.load();
-        Scene splashScene = new Scene(splashRoot);
+        Scene splashScene = new Scene(splashRoot, 895, 650); // Set width and height
 
         // Set the stage for the splash screen
         primaryStage.setScene(splashScene);
