@@ -99,18 +99,18 @@ public class MovieDAO {
     }
     public List<Movie> searchMoviesByTitle(Connection connection, String query) {
         List<Movie> movies = new ArrayList<>();
-        String sql = "SELECT * FROM movies WHERE title LIKE ?";
+        String sql = "SELECT * FROM movies WHERE LOWER(title) LIKE ?";  // Make it case-insensitive
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, "%" + query + "%");
+            statement.setString(1, "%" + query + "%");  // Using % to search for any title containing the query
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Integer movieId = resultSet.getInt("movieId");
+                Integer movieId = resultSet.getInt("movie_id");
                 String title = resultSet.getString("title");
                 String genre = resultSet.getString("genre");
-                java.sql.Date releaseDate = resultSet.getDate("releaseDate");
+                java.sql.Date releaseDate = resultSet.getDate("release_date");
                 Double rating = resultSet.getDouble("rating");
-                Boolean available = resultSet.getBoolean("available");
+                Boolean available = resultSet.getBoolean("availability");
 
                 Movie movie = new Movie(movieId, title, genre, releaseDate, rating, available);
                 movies.add(movie);

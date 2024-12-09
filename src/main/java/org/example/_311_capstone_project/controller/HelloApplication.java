@@ -72,7 +72,7 @@ public class HelloApplication extends Application {
         SystemTray tray = SystemTray.getSystemTray();
 
         // Use an image for the tray icon
-        java.awt.Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/browsingMovies.png"));
+        java.awt.Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/signupBackground.png"));
         TrayIcon trayIcon = new TrayIcon(image, "MediaVault");
         trayIcon.setImageAutoSize(true);
 
