@@ -13,7 +13,7 @@ public class Movie {
         this.movieId = movieId;
         this.title = title;
         this.genre = genre;
-        this.releaseDate = releaseDate;
+        this.releaseDate = (releaseDate == null) ? null : new java.sql.Date(releaseDate.getTime());
         this.rating = rating;
         this.availability = availability;
     }
@@ -44,11 +44,11 @@ public class Movie {
     }
 
     public java.sql.Date getReleaseDate() {
-        return releaseDate;
+        return releaseDate == null ? null : new java.sql.Date(releaseDate.getTime());
     }
 
     public void setReleaseDate(java.sql.Date releaseDate) {
-        this.releaseDate = releaseDate;
+        this.releaseDate = (releaseDate == null) ? null : new java.sql.Date(releaseDate.getTime());
     }
 
     public double getRating() {
