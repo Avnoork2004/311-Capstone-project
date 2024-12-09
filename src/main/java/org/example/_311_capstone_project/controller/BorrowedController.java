@@ -65,8 +65,12 @@ public class BorrowedController {
         try (Connection connection = DatabaseConnection.getConnection()) {
             borrowedList.setAll(rentalDAO.getRentalsByUserId(connection, Integer.parseInt(username))); // Fetch rentals using username
             borrowedTable.setItems(borrowedList); // Populate the table
+        } catch (NumberFormatException e) {
+            showAlert("Input Error", "Invalid username format", Alert.AlertType.ERROR);
+            e.printStackTrace();
         } catch (Exception e) {
             showAlert("Error", "Failed to load borrowed items", Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
     }
 
