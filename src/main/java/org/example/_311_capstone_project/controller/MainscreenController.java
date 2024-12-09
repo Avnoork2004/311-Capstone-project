@@ -186,12 +186,15 @@ public class MainscreenController implements Initializable {
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             MovieDAO movieDAO = new MovieDAO();
-            List<Movie> filteredMovies = movieDAO.searchMoviesByTitle(connection, query);
+
+            // Make the query case-insensitive by using lower() on both the title and the query
+            List<Movie> filteredMovies = movieDAO.searchMoviesByTitle(connection, query.toLowerCase());
 
             movieList.clear();
             movieList.addAll(filteredMovies);
             MovieTable.setItems(movieList);
 
+            // Display alert if no movies found
             if (filteredMovies.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Search Results");
