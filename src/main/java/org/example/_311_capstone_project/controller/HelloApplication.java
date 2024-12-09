@@ -2,28 +2,68 @@ package org.example._311_capstone_project.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
+    private Stage primaryStage;
+
+
     @Override
     public void start(Stage stage) throws IOException {
+        try {
+            // Debugging log to check if the resource is found
+            System.out.println("Loading SplashScreen.fxml...");
 
-        // Loads login screen from FXML file
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/org/example/_311_capstone_project/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 895, 650);
+            // Load and show SplashScreen.fxml
+            URL splashScreenUrl = getClass().getResource("/org/example/_311_capstone_project/SplashScreen.fxml");
+            if (splashScreenUrl == null) {
+                System.err.println("Failed to find SplashScreen.fxml");
+            } else {
+                Parent root = FXMLLoader.load(splashScreenUrl);
+                Scene scene = new Scene(root, 900, 600);
+                scene.getStylesheets().add(getClass().getResource("/css/lightTheme.css").toExternalForm());
+                stage.setScene(scene);
+                stage.show();
+            }
 
-        // Sets the window title and displays the scene
-        stage.setTitle("MediaVault");
-        stage.setScene(scene);
-        stage.show();
+            // Simulate a delay for the splash screen, if needed
+            Thread.sleep(2000); // Adjust the delay as necessary
 
-        // Show startup notification
-        showStartupNotification();
+            // After the splash screen, load the login screen
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/org/example/_311_capstone_project/login.fxml"));
+            Scene loginScene = new Scene(fxmlLoader.load(), 895, 650); // Set login scene size
+
+            // Set the main application scene (login screen)
+            stage.setScene(loginScene);
+
+            // Optionally, you can show the startup notification here as well
+            showStartupNotification();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+    /**  private void showScene1() {
+        try{ Parent root = FXMLLoader.load(getClass().getResource("/org/example/_311_capstone_project/SplashScreen.fxml"));
+            Scene scene = new Scene(root, 600, 400);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            showStartupNotification();
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
 
     // Method to show a system tray notification
     private void showStartupNotification() {
