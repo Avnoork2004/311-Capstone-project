@@ -4,12 +4,12 @@ public class Movie {
     private Integer movieId;
     private String title;
     private String genre;
-    private Integer releaseDate;
+    private java.sql.Date releaseDate;
     private Double rating;
     private Boolean availability;
 
     // Constructor
-    public Movie(Integer movieId, String title, String genre, Integer releaseDate, Double rating, Boolean availability) {
+    public Movie(Integer movieId, String title, String genre, java.sql.Date releaseDate, Double rating, Boolean availability) {
         this.movieId = movieId;
         this.title = title;
         this.genre = genre;
@@ -43,11 +43,11 @@ public class Movie {
         this.genre = genre;
     }
 
-    public Integer getReleaseDate() {
+    public java.sql.Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Integer releaseDate) {
+    public void setReleaseDate(java.sql.Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
