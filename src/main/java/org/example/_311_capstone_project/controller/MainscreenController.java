@@ -67,6 +67,8 @@ public class MainscreenController implements Initializable {
         setupTableColumns();
         loadMoviesFromDatabase();
         setupMenuActions();
+
+        Search.setOnAction(event -> searchMovies());
     }
 
     private void setupTableColumns() {
@@ -175,10 +177,17 @@ public class MainscreenController implements Initializable {
     @FXML
     private void searchMovies() {
         String query = Search.getText().trim();
+        if (query.isEmpty()) {
+            // If the search query is empty, show all movies again
+            loadMoviesFromDatabase();
+            return;
+        }
+
         Connection connection = DatabaseConnection.getConnection();
         if (connection != null) {
             MovieDAO movieDAO = new MovieDAO();
             List<Movie> filteredMovies = movieDAO.searchMoviesByTitle(connection, query);
+
             movieList.clear();
             movieList.addAll(filteredMovies);
             MovieTable.setItems(movieList);

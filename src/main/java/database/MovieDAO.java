@@ -97,22 +97,23 @@ public class MovieDAO {
             return false;
         }
     }
-    public List<Movie> searchMoviesByTitle(Connection connection, String title) {
+    public List<Movie> searchMoviesByTitle(Connection connection, String query) {
         List<Movie> movies = new ArrayList<>();
-        String query = "SELECT * FROM movies WHERE title LIKE ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, "%" + title + "%"); // Matches any title containing the given string
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    movies.add(new Movie(
-                            resultSet.getInt("movie_id"),
-                            resultSet.getString("title"),
-                            resultSet.getString("genre"),
-                            resultSet.getDate("release_date"),
-                            resultSet.getDouble("rating"),
-                            resultSet.getBoolean("availability")
-                    ));
-                }
+        String sql = "SELECT * FROM movies WHERE title LIKE ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + query + "%");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Integer movieId = resultSet.getInt("movieId");
+                String title = resultSet.getString("title");
+                String genre = resultSet.getString("genre");
+                java.sql.Date releaseDate = resultSet.getDate("releaseDate");
+                Double rating = resultSet.getDouble("rating");
+                Boolean available = resultSet.getBoolean("available");
+
+                Movie movie = new Movie(movieId, title, genre, releaseDate, rating, available);
+                movies.add(movie);
             }
         } catch (SQLException e) {
             e.printStackTrace();
