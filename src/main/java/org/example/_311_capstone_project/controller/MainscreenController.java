@@ -3,6 +3,8 @@ package org.example._311_capstone_project.controller;
 import database.DatabaseConnection;
 import database.Movie;
 import database.MovieDAO;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,11 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -76,7 +74,11 @@ public class MainscreenController implements Initializable {
         MovieIDTitle.setCellValueFactory(new PropertyValueFactory<>("movieId"));
         MovieTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         GenreTitle.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        ReleaseYearTitle.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        ReleaseYearTitle.setCellValueFactory(cellData -> {
+            java.sql.Date releaseDate = cellData.getValue().getReleaseDate();
+            Integer year = (releaseDate != null) ? releaseDate.toLocalDate().getYear() : null;
+            return new SimpleObjectProperty<>(year); // Use SimpleObjectProperty for Integer values
+        });
         RateTitle.setCellValueFactory(new PropertyValueFactory<>("rating"));
     }
 
@@ -166,6 +168,28 @@ public class MainscreenController implements Initializable {
             historyStage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    @FXML
+    private void searchMovies() {
+        String query = Search.getText().trim();
+        Connection connection = DatabaseConnection.getConnection();
+        if (connection != null) {
+            MovieDAO movieDAO = new MovieDAO();
+            List<Movie> filteredMovies = movieDAO.searchMoviesByTitle(connection, query);
+            movieList.clear();
+            movieList.addAll(filteredMovies);
+            MovieTable.setItems(movieList);
+
+            if (filteredMovies.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Search Results");
+                alert.setHeaderText(null);
+                alert.setContentText("No movies found for the search query: " + query);
+                alert.showAndWait();
+            }
+        } else {
+            System.out.println("Failed to connect to the database for searching movies.");
         }
     }
 }
