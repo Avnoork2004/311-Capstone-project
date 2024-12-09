@@ -60,7 +60,19 @@ public class MainscreenController implements Initializable {
     @FXML
     private MenuItem History;
 
+    @FXML
+    private Label usernameLabel;
+
     private ObservableList<Movie> movieList = FXCollections.observableArrayList();
+
+
+    public void setLoggedInUser(String username) {
+        if (usernameLabel != null) {
+            usernameLabel.setText(username);
+        } else {
+            System.out.println("usernameLabel is null. Check the FXML fx:id or initialization.");
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
