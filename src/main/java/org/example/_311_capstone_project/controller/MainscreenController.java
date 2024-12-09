@@ -115,6 +115,8 @@ public class MainscreenController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/about.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 895, 650);
+            scene.getStylesheets().add(getClass().getResource("/org/example/_311_capstone_project/about.css").toExternalForm());
+
 
             // Get the current stage and close it
             Stage currentStage = (Stage) aboutBtn.getParentPopup().getOwnerWindow();
