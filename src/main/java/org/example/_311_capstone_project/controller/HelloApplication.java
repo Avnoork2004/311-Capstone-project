@@ -44,6 +44,8 @@ public class HelloApplication extends Application {
                 FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/login.fxml"));
                 Parent loginRoot = loginLoader.load();
                 Scene loginScene = new Scene(loginRoot);
+                loginScene.getStylesheets().add(getClass().getResource("/org/example/_311_capstone_project/login.css").toExternalForm());
+
 
                 // Set the same application icon for the login screen
                 primaryStage.getIcons().add(appIcon);
