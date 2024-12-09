@@ -9,50 +9,59 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._311_capstone_project.controller.MainscreenController">
-   <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="633.0" prefWidth="893.0">
-         <children>
-            <AnchorPane prefHeight="400.0" prefWidth="600.0">
-               <children>
-                  <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="885.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="[Account Username]" />
-                        <Menu mnemonicParsing="false" text="About">
-                           <items>
-                              <MenuItem fx:id="aboutBtn" mnemonicParsing="false" onAction="#displayAboutInfo" text="go to About" />
-                           </items>
-                        </Menu>
-                      <Menu mnemonicParsing="false" text="History">
-                        <items>
-                          <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Sign out">
-                        <items>
-                          <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="logout" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
-                  <Text layoutX="72.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
-                  <TextField fx:id="Search" layoutX="126.0" layoutY="51.0" onAction="#searchMovies" prefHeight="26.0" prefWidth="690.0" />
-                  <TableView fx:id="MovieTable" layoutY="100.0" prefHeight="515.0" prefWidth="878.0">
-                    <columns>
-                        <TableColumn fx:id="MovieIDTitle" prefWidth="75.0" text="[Movie ID]" />
-                      <TableColumn fx:id="MovieTitle" prefWidth="75.0" text="[Movie Title]" />
-                      <TableColumn fx:id="RateTitle" prefWidth="75.0" text="[Rate]" />
-                        <TableColumn fx:id="GenreTitle" prefWidth="75.0" text="[Genre ]" />
-                        <TableColumn fx:id="ReleaseYearTitle" prefWidth="75.0" text="[releaseYear]" />
-                        <TableColumn fx:id="rateingTitle" prefWidth="75.0" text="[rating]" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </children>
+    <children>
+        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="633.0" prefWidth="893.0">
+            <children>
+                <AnchorPane prefHeight="400.0" prefWidth="600.0">
+                    <children>
+                        <MenuBar fx:id="MenuBar" prefHeight="28.0" prefWidth="885.0">
+                            <menus>
+                                <!-- Menu for displaying the username -->
+                                <Menu mnemonicParsing="false">
+                                    <graphic>
+                                        <Label fx:id="usernameLabel" text="[Account Username]" style="-fx-text-fill: black; -fx-font-size: 14px;" />
+                                    </graphic>
+                                </Menu>
+                                <!-- About Menu -->
+                                <Menu mnemonicParsing="false" text="About">
+                                    <items>
+                                        <MenuItem fx:id="aboutBtn" mnemonicParsing="false" onAction="#displayAboutInfo" text="go to About" />
+                                    </items>
+                                </Menu>
+                                <!-- History Menu -->
+                                <Menu mnemonicParsing="false" text="History">
+                                    <items>
+                                        <MenuItem fx:id="History" mnemonicParsing="false" onAction="#gotoHistory" text="go to History" />
+                                    </items>
+                                </Menu>
+                                <!-- Sign out Menu -->
+                                <Menu mnemonicParsing="false" text="Sign out">
+                                    <items>
+                                        <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="logout" />
+                                    </items>
+                                </Menu>
+                            </menus>
+                        </MenuBar>
+                        <Text layoutX="72.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
+                        <TextField fx:id="Search" layoutX="126.0" layoutY="51.0" onAction="#searchMovies" prefHeight="26.0" prefWidth="690.0" />
+                        <TableView fx:id="MovieTable" layoutY="100.0" prefHeight="515.0" prefWidth="878.0">
+                            <columns>
+                                <TableColumn fx:id="MovieIDTitle" prefWidth="75.0" text="[Movie ID]" />
+                                <TableColumn fx:id="MovieTitle" prefWidth="75.0" text="[Movie Title]" />
+                                <TableColumn fx:id="RateTitle" prefWidth="75.0" text="[Rate]" />
+                                <TableColumn fx:id="GenreTitle" prefWidth="75.0" text="[Genre ]" />
+                                <TableColumn fx:id="ReleaseYearTitle" prefWidth="75.0" text="[releaseYear]" />
+                                <TableColumn fx:id="rateingTitle" prefWidth="75.0" text="[rating]" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

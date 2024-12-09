@@ -87,9 +87,18 @@ public class LoginController {
             // Set user session
             UserSession.getInstance(enteredUsername, enteredPassword);
 
-            // Redirect to the next screen
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
+                // Use FXMLLoader to load the FXML and get the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
+                Parent root = loader.load();
+
+                // Get the controller
+                MainscreenController mainscreenController = loader.getController();
+
+                // Pass the username to the controller
+                mainscreenController.setLoggedInUser(enteredUsername);
+
+                // Set up the scene and stage
                 Scene scene = new Scene(root, 895, 650);
                 scene.getStylesheets().add(getClass().getResource("/org/example/_311_capstone_project/style.css").toExternalForm());
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -104,6 +113,7 @@ public class LoginController {
             showErrorAlert("Invalid username or password. Please try again.");
         }
     }
+
 
     private void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
