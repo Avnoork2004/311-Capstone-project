@@ -21,7 +21,7 @@ public class DatabaseConnection {
             } catch (SQLException e) {
                 System.out.println("Failed to connect to the database.");
                 e.printStackTrace();
-                throw new RuntimeException("Database connection failed.", e); // Throw an exception to stop execution if the connection fails
+              //  throw new RuntimeException("Database connection failed.", e); // Throw an exception to stop execution if the connection fails
             }
         }
         return connection; // Return the connection

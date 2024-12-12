@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,12 +61,18 @@ public class BorrowedController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/_311_capstone_project/mainscreen.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Get the stage from the MenuItem's event source
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
+            Stage stage = (Stage) scene.getWindow();
+
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 }
