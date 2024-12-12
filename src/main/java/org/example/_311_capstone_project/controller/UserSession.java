@@ -1,5 +1,8 @@
 package org.example._311_capstone_project.controller;
 
+import database.Rental;
+import javafx.scene.control.Alert;
+
 import java.util.prefs.Preferences;
 
 public class UserSession {
@@ -9,7 +12,11 @@ public class UserSession {
     private String userName;
 
     private String password;
+
     private String privileges;
+
+
+
 
     // Private initialize user session
     private UserSession(String userName, String password, String privileges) {
@@ -67,4 +74,8 @@ public class UserSession {
                 ", privileges='" + this.privileges + '\'' +
                 '}';
     }
+
+
+
+
 }

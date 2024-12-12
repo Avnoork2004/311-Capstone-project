@@ -15,6 +15,15 @@ public class Rental {
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
     }
+    private String movieTitle;
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
 
     // Getters and Setters
     public int getRentalId() {
