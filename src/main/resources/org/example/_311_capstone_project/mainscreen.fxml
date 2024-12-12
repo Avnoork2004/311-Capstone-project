@@ -40,7 +40,7 @@
                         </MenuBar>
                         <Text layoutX="72.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
                         <TextField fx:id="Search" layoutX="126.0" layoutY="51.0" onAction="#searchMovies" prefHeight="26.0" prefWidth="690.0" />
-                        <TableView fx:id="MovieTable" layoutY="100.0" prefHeight="515.0" prefWidth="878.0">
+                        <TableView fx:id="MovieTable" layoutY="100.0" prefHeight="450.0" prefWidth="878.0">
                             <columns>
                                 <TableColumn fx:id="MovieIDTitle" prefWidth="75.0" text="[Movie ID]" />
                                 <TableColumn fx:id="MovieTitle" prefWidth="75.0" text="[Movie Title]" />
@@ -53,6 +53,7 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
+                        <Button fx:id="rentButton" text="Rent" layoutX="400.0" layoutY="570.0" onAction="#handleRent" />
                     </children>
                 </AnchorPane>
             </children>

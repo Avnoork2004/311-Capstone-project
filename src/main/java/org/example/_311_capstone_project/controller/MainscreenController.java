@@ -1,8 +1,6 @@
 package org.example._311_capstone_project.controller;
 
-import database.DatabaseConnection;
-import database.Movie;
-import database.MovieDAO;
+import database.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -62,6 +60,9 @@ public class MainscreenController implements Initializable {
 
     @FXML
     private Label usernameLabel;
+
+    @FXML
+    private Button rentButton;
 
     private ObservableList<Movie> movieList = FXCollections.observableArrayList();
 
@@ -218,4 +219,34 @@ public class MainscreenController implements Initializable {
             System.out.println("Failed to connect to the database for searching movies.");
         }
     }
+
+    @FXML
+    public void handleRent(ActionEvent event) {
+        Movie selectedMovie = MovieTable.getSelectionModel().getSelectedItem();
+        if (selectedMovie == null) {
+            showAlert("No Selection", "Please select a movie to rent.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (!selectedMovie.getAvailability()) {
+            showAlert("Unavailable", "This movie is currently unavailable.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Update availability and add to borrowed list
+        selectedMovie.setAvailability(false);
+        BorrowedController.addBorrowedMovie(selectedMovie);
+
+        showAlert("Success", "Movie rented successfully!", Alert.AlertType.INFORMATION);
+    }
+
+
+
+    private void showAlert(String title, String content, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 }
